@@ -8,14 +8,21 @@ createApp({
     const inventory = ref(100);
     const details = ref(["50% cotton", "30% wool", "20% polyester"]);
     const variants = ref([
-      { id: 2234, color: "green" },
-      { id: 2235, color: "blue" },
+      { id: 2234, color: "green", image: "./assets/images/socks_green.jpg" },
+      { id: 2235, color: "blue", image: "./assets/images/socks_blue.jpg" },
     ]);
-    const sizes = ref([
-      { id: 1, size: "S" },
-      { id: 2, size: "M" },
-      { id: 3, size: "L" },
-    ]);
+    const cart = ref(0);
+    const addToCart = () => {
+      cart.value += 1;
+    };
+    const updateImage = (variantImage) => {
+      image.value = variantImage;
+      console.log(variantImage);
+    };
+    const changeInStock = () => {
+      inStock.value = !inStock.value;
+    };
+
     return {
       product,
       image,
@@ -23,7 +30,10 @@ createApp({
       inventory,
       details,
       variants,
-      sizes,
+      cart,
+      addToCart,
+      updateImage,
+      changeInStock,
     };
   },
 }).mount("#app");
