@@ -15,6 +15,7 @@ const productDisplay = {
   Almost out of stock
 </p>
 <p v-else>Out of Stock</p>
+<p>Shipping : {{shipping}}</p>
 <ul>
   <li v-for="detail in details">{{detail}}</li>
 </ul>
@@ -38,7 +39,10 @@ const productDisplay = {
 <button class="button" @click="changeInStock">Change Stock</button>
 </div>`,
 
-  setup() {
+  props: {
+    premium: Boolean,
+  },
+  setup(props) {
     const product = ref("Boots");
     const brand = ref("SE 331");
     // const image = ref("./assets/images/socks_green.jpg");
@@ -86,9 +90,13 @@ const productDisplay = {
       return brand.value + " " + product.value;
     });
 
-    // const changeInStock = () => {
-    //   inStock.value = !inStock.value;
-    // };
+    const shipping = computed(() => {
+      if (props.premium) {
+        return "Free";
+      } else {
+        return 30;
+      }
+    });
 
     return {
       title,
@@ -99,8 +107,8 @@ const productDisplay = {
       variants,
       addToCart,
       updateImage,
-      //   changeInStock,
       updateVariant,
+      shipping,
     };
   },
 };

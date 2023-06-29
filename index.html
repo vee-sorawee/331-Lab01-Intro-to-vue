@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="./assets/styles.css" />
     <!-- Import Vue.js -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      console.log(cart);
+    </script>
   </head>
 
   <body>
@@ -15,7 +18,8 @@
       <!-- <p>{{description}}</p> -->
       <div class="nav-bar"></div>
       <div class="cart">Cart({{cart}})</div>
-      <product-display />
+
+      <product-display :premium="premium" />
     </div>
 
     <!-- Import Js -->
