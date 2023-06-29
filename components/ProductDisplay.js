@@ -42,7 +42,7 @@ const productDisplay = {
   props: {
     premium: Boolean,
   },
-  setup(props) {
+  setup(props, { emit }) {
     const product = ref("Boots");
     const brand = ref("SE 331");
     // const image = ref("./assets/images/socks_green.jpg");
@@ -64,7 +64,6 @@ const productDisplay = {
       },
     ]);
     const selectedVariant = ref(0);
-    const cart = ref(0);
 
     const updateVariant = (index) => {
       selectedVariant.value = index;
@@ -78,7 +77,7 @@ const productDisplay = {
       return variants.value[selectedVariant.value].quantity;
     });
     const addToCart = () => {
-      cart.value += 1;
+      emit("add-to-cart", variants.value[selectedVariant.value].id);
     };
 
     const updateImage = (variantImage) => {
