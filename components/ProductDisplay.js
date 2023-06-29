@@ -34,7 +34,15 @@ const productDisplay = {
   :class="{disabledButton: !inStock}"
   @click="addToCart"
 >
-  Add To Cart
+Add To Cart
+</button>
+<button
+  class="button"
+  :disabled="!inStock"
+  :class="{disabledButton: !inStock}"
+  @click="deleteFromCart"
+>
+  Delete From Cart
 </button>
 <button class="button" @click="changeInStock">Change Stock</button>
 </div>`,
@@ -54,7 +62,7 @@ const productDisplay = {
         id: 2234,
         color: "green",
         image: "./assets/images/socks_green.jpg",
-        quaitity: 50,
+        quantity: 50,
       },
       {
         id: 2235,
@@ -76,8 +84,13 @@ const productDisplay = {
     const inStock = computed(() => {
       return variants.value[selectedVariant.value].quantity;
     });
+
     const addToCart = () => {
       emit("add-to-cart", variants.value[selectedVariant.value].id);
+    };
+
+    const deleteFromCart = () => {
+      emit("delete-from-cart", variants.value[selectedVariant.value].id);
     };
 
     const updateImage = (variantImage) => {
@@ -105,6 +118,7 @@ const productDisplay = {
       details,
       variants,
       addToCart,
+      deleteFromCart,
       updateImage,
       updateVariant,
       shipping,
