@@ -31,6 +31,7 @@ const productDisplay = {
           Add To Cart
         </button>
       </div>
+      <review-list v-if="reviews.length" :reviews="reviews"></review-list>
       <review-form @review-submitted="addReview"></review-form>
       </div>
       `,
@@ -66,11 +67,11 @@ const productDisplay = {
       },
     ]);
     const selectedVariant = ref(0);
-    const reviews = ref([])
+    const reviews = ref([]);
     const addReview = (review) => {
       reviews.value.push(review);
-      console.log(reviews.value)
-    }
+      console.log(reviews.value);
+    };
     const updateVariant = (index) => {
       selectedVariant.value = index;
     };
@@ -101,6 +102,7 @@ const productDisplay = {
       updateVariant,
       shipping,
       addReview,
+      reviews,
     };
   },
 };
