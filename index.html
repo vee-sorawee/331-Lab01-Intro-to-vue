@@ -11,25 +11,14 @@
 
   <body>
     <div id="app">
-      <!-- <h1>{{product}}</h1> -->
-      <!-- <p>{{description}}</p> -->
       <div class="nav-bar"></div>
-      <div class="cart">
-        Cart
-        <p>{{cart[0]}} : {{cart[2]}}</p>
-        <p>{{cart[1]}} : {{cart[3]}}</p>
-      </div>
-
-      <product-display
-        :premium="premium"
-        @add-to-cart="updateCart"
-        @delete-from-cart="deleteCart"
-      />
+      <div class="cart">Cart({{ cart.length }})</div>
+      <product-display :premium="premium" @add-to-cart="updateCart"></product-display>
     </div>
 
     <!-- Import Js -->
-
     <script src="./components/ProductDisplay.js"></script>
+    <script src="./components/ReviewForm.js"></script>
     <script src="./main.js"></script>
   </body>
 </html>
